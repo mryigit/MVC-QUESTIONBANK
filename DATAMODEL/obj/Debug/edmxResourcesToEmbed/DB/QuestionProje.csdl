@@ -1,0 +1,298 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QuestionProjeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Difficulty">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Degree" Type="Int32" Nullable="false" />
+    <Property Name="StudentPoint" Type="Int32" Nullable="false" />
+    <Property Name="TeacherPoint" Type="Int32" Nullable="false" />
+    <Property Name="LanguageID" Type="Byte" Nullable="false" />
+    <Property Name="State" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EducationProgram">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LanguageID" Type="Byte" Nullable="false" />
+    <Property Name="State" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Language" Relationship="Self.FK_EducationProgram_Language" FromRole="EducationProgram" ToRole="Language" />
+  </EntityType>
+  <EntityType Name="Language">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="state" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Lesson">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="EducationProgramID" Type="Int32" Nullable="false" />
+    <Property Name="LanguageID" Type="Byte" Nullable="false" />
+    <Property Name="State" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="EducationProgram" Relationship="Self.FK_Lesson_EducationProgram" FromRole="Lesson" ToRole="EducationProgram" />
+    <NavigationProperty Name="Language" Relationship="Self.FK_Lesson_Language" FromRole="Lesson" ToRole="Language" />
+  </EntityType>
+  <EntityType Name="Question">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="QuestionDefinition" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="EducationProgramID" Type="Int32" Nullable="false" />
+    <Property Name="LessonID" Type="Int32" Nullable="false" />
+    <Property Name="SubjectID" Type="Int32" Nullable="false" />
+    <Property Name="DifficultyID" Type="Int32" Nullable="false" />
+    <Property Name="QuestionTypeID" Type="Int32" Nullable="false" />
+    <Property Name="LanguageID" Type="Byte" Nullable="false" />
+    <Property Name="State" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Difficulty" Relationship="Self.FK_Question_Difficulty" FromRole="Question" ToRole="Difficulty" />
+    <NavigationProperty Name="EducationProgram" Relationship="Self.FK_Question_EducationProgram" FromRole="Question" ToRole="EducationProgram" />
+    <NavigationProperty Name="Language" Relationship="Self.FK_Question_Language" FromRole="Question" ToRole="Language" />
+    <NavigationProperty Name="Lesson" Relationship="Self.FK_Question_Lesson" FromRole="Question" ToRole="Lesson" />
+    <NavigationProperty Name="QuestionType" Relationship="Self.FK_Question_QuestionType" FromRole="Question" ToRole="QuestionType" />
+    <NavigationProperty Name="Subject" Relationship="Self.FK_Question_Subject" FromRole="Question" ToRole="Subject" />
+    <NavigationProperty Name="QuestionOption" Relationship="Self.FK_QuestionOption_QuestionOption" FromRole="Question" ToRole="QuestionOption" />
+  </EntityType>
+  <EntityType Name="QuestionOption">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OptionKey" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="OptionValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IsCorrect" Type="Boolean" Nullable="false" />
+    <Property Name="QuestionID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="QuestionType">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="State" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Subject">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LessonID" Type="Int32" Nullable="false" />
+    <Property Name="LanguageID" Type="Byte" Nullable="false" />
+    <Property Name="State" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Language" Relationship="Self.FK_Subject_Language" FromRole="Subject" ToRole="Language" />
+    <NavigationProperty Name="Lesson" Relationship="Self.FK_Subject_Lesson" FromRole="Subject" ToRole="Lesson" />
+  </EntityType>
+  <Association Name="FK_Question_Difficulty">
+    <End Role="Difficulty" Type="Self.Difficulty" Multiplicity="1" />
+    <End Role="Question" Type="Self.Question" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Difficulty">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Question">
+        <PropertyRef Name="DifficultyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EducationProgram_Language">
+    <End Role="Language" Type="Self.Language" Multiplicity="1" />
+    <End Role="EducationProgram" Type="Self.EducationProgram" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Language">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="EducationProgram">
+        <PropertyRef Name="LanguageID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Lesson_EducationProgram">
+    <End Role="EducationProgram" Type="Self.EducationProgram" Multiplicity="1" />
+    <End Role="Lesson" Type="Self.Lesson" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EducationProgram">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Lesson">
+        <PropertyRef Name="EducationProgramID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Question_EducationProgram">
+    <End Role="EducationProgram" Type="Self.EducationProgram" Multiplicity="1" />
+    <End Role="Question" Type="Self.Question" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EducationProgram">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Question">
+        <PropertyRef Name="EducationProgramID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Lesson_Language">
+    <End Role="Language" Type="Self.Language" Multiplicity="1" />
+    <End Role="Lesson" Type="Self.Lesson" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Language">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Lesson">
+        <PropertyRef Name="LanguageID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Question_Language">
+    <End Role="Language" Type="Self.Language" Multiplicity="1" />
+    <End Role="Question" Type="Self.Question" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Language">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Question">
+        <PropertyRef Name="LanguageID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Subject_Language">
+    <End Role="Language" Type="Self.Language" Multiplicity="1" />
+    <End Role="Subject" Type="Self.Subject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Language">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Subject">
+        <PropertyRef Name="LanguageID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Question_Lesson">
+    <End Role="Lesson" Type="Self.Lesson" Multiplicity="1" />
+    <End Role="Question" Type="Self.Question" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lesson">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Question">
+        <PropertyRef Name="LessonID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Subject_Lesson">
+    <End Role="Lesson" Type="Self.Lesson" Multiplicity="1" />
+    <End Role="Subject" Type="Self.Subject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lesson">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Subject">
+        <PropertyRef Name="LessonID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Question_QuestionType">
+    <End Role="QuestionType" Type="Self.QuestionType" Multiplicity="1" />
+    <End Role="Question" Type="Self.Question" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QuestionType">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Question">
+        <PropertyRef Name="QuestionTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Question_Subject">
+    <End Role="Subject" Type="Self.Subject" Multiplicity="1" />
+    <End Role="Question" Type="Self.Question" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subject">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Question">
+        <PropertyRef Name="SubjectID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QuestionOption_QuestionOption">
+    <End Role="Question" Type="Self.Question" Multiplicity="1" />
+    <End Role="QuestionOption" Type="Self.QuestionOption" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Question">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="QuestionOption">
+        <PropertyRef Name="QuestionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="QuestionProjeEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Difficulty" EntityType="Self.Difficulty" />
+    <EntitySet Name="EducationProgram" EntityType="Self.EducationProgram" />
+    <EntitySet Name="Language" EntityType="Self.Language" />
+    <EntitySet Name="Lesson" EntityType="Self.Lesson" />
+    <EntitySet Name="Question" EntityType="Self.Question" />
+    <EntitySet Name="QuestionOption" EntityType="Self.QuestionOption" />
+    <EntitySet Name="QuestionType" EntityType="Self.QuestionType" />
+    <EntitySet Name="Subject" EntityType="Self.Subject" />
+    <AssociationSet Name="FK_Question_Difficulty" Association="Self.FK_Question_Difficulty">
+      <End Role="Difficulty" EntitySet="Difficulty" />
+      <End Role="Question" EntitySet="Question" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EducationProgram_Language" Association="Self.FK_EducationProgram_Language">
+      <End Role="Language" EntitySet="Language" />
+      <End Role="EducationProgram" EntitySet="EducationProgram" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Lesson_EducationProgram" Association="Self.FK_Lesson_EducationProgram">
+      <End Role="EducationProgram" EntitySet="EducationProgram" />
+      <End Role="Lesson" EntitySet="Lesson" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Question_EducationProgram" Association="Self.FK_Question_EducationProgram">
+      <End Role="EducationProgram" EntitySet="EducationProgram" />
+      <End Role="Question" EntitySet="Question" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Lesson_Language" Association="Self.FK_Lesson_Language">
+      <End Role="Language" EntitySet="Language" />
+      <End Role="Lesson" EntitySet="Lesson" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Question_Language" Association="Self.FK_Question_Language">
+      <End Role="Language" EntitySet="Language" />
+      <End Role="Question" EntitySet="Question" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Subject_Language" Association="Self.FK_Subject_Language">
+      <End Role="Language" EntitySet="Language" />
+      <End Role="Subject" EntitySet="Subject" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Question_Lesson" Association="Self.FK_Question_Lesson">
+      <End Role="Lesson" EntitySet="Lesson" />
+      <End Role="Question" EntitySet="Question" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Subject_Lesson" Association="Self.FK_Subject_Lesson">
+      <End Role="Lesson" EntitySet="Lesson" />
+      <End Role="Subject" EntitySet="Subject" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Question_QuestionType" Association="Self.FK_Question_QuestionType">
+      <End Role="QuestionType" EntitySet="QuestionType" />
+      <End Role="Question" EntitySet="Question" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Question_Subject" Association="Self.FK_Question_Subject">
+      <End Role="Subject" EntitySet="Subject" />
+      <End Role="Question" EntitySet="Question" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QuestionOption_QuestionOption" Association="Self.FK_QuestionOption_QuestionOption">
+      <End Role="Question" EntitySet="Question" />
+      <End Role="QuestionOption" EntitySet="QuestionOption" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,46 @@
+﻿<div class="container body-content">
+    
+    <p>
+        <a href="#" onclick="openFilterEditForm()">Filtre Ekle</a>
+    </p>
+    <label>Filtreler</label>
+    <table id="tblFilter" class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayName("Eğitim Programı")
+                </th>
+                <th>
+                    @Html.DisplayName("Ders")
+                </th>
+                <th>
+                    @Html.DisplayName("Konu")
+                </th>
+                <th>
+                    @Html.DisplayName("Zorluk Seviyesi")
+                </th>
+                <th>
+                    @Html.DisplayName("Soru Tipi")
+                </th>
+                <th>
+                    @Html.DisplayName("Dil")
+                </th>
+                <th>
+                    @Html.DisplayName("Soru Sayısı")
+                </th>
+                <th>
+                    @Html.DisplayName("Soru Şık Sayısı")
+                </th>
+                <th>
+                    @Html.DisplayName("Sil")
+                </th>
+
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <p>
+        <a href="#" onclick="getfilterQuestions()">Soruları Getir</a>
+    </p>
+</div>

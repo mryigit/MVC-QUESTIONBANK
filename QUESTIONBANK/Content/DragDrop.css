@@ -1,0 +1,42 @@
+﻿
+.DragAnswer {
+  display: inline-block;
+  width: auto;
+  font-size: 13px;
+  line-height: 20px;
+  cursor: move;
+ 
+  margin-left: 10%;
+  margin-right: 10%;
+}
+.DropSlot {
+  display: inline-block;
+  width: 110px;
+  background: lightblue;
+  margin: 0 3px;
+  text-align: center;
+  padding: 5px 10px 5px 5px;
+  margin: 10px;
+
+}
+.options {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  width: 80%;
+  list-style: none;
+  border: 1px solid #19286C;
+  text-align: center;
+  padding: 0;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top:5px;
+  margin-bottom:5px;
+}
+
+.Question{
+    border-radius: 10px;
+  border: 1px solid #BADA55;
+  margin-top:5px;
+    
+}

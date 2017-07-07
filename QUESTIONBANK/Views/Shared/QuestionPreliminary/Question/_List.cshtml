@@ -1,0 +1,34 @@
+﻿
+<div class="container body-content" style="display:none">
+    <label>Sorular</label>
+    <p>
+        <a href="#" onclick="openQuestionEditForm(0,null)">Yeni Kayıt</a>
+    </p>
+    <table id="tblQuestion" class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayName("Tanım")
+                </th>
+                <th>
+                    @Html.DisplayName("Soru Tipi")
+                </th>
+                <th>
+                    Şıklar
+                </th>
+                <th>
+                    @Html.DisplayName("Duzenle")
+                </th>
+                <th>
+                    @Html.DisplayName("Sil")
+                </th>
+            </tr>
+        </thead>
+        <tbody id="motherTable"></tbody>
+    </table>
+</div>
+
+
+
+
+

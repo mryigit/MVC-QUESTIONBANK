@@ -1,0 +1,23 @@
+﻿@model SERVICE.Responses.LessonListResponse
+
+@if (Model != null && Model.Code != 0)
+{
+    <div>hata:@Model.Messeage</div>
+    return;
+}
+
+@Html.TextAreaFor(t => t.lessions[0].Name)
+
+
+@if (Model == null)
+{
+
+    <input type="button" value="Ekle" />
+
+}
+else
+{
+    <input type="button" value="Güncelle" />
+}
+
+

@@ -1,0 +1,102 @@
+﻿@model DATAMODEL.DB.Question
+
+
+<form id="frmAddQuestion">
+    <div class="form-horizontal">
+        <h4>Soru Ekleme</h4>
+        <hr />
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.QuestionTypeID, "Soru Tipi", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("QuestionTypeID", null, htmlAttributes: new { @class = "form-control", @id = "ddlQuestionType", @onchange= "questionTypeChange()" })
+                @Html.ValidationMessageFor(model => model.QuestionTypeID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SubjectID, "Konu", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("SubjectID", null, htmlAttributes: new { @class = "form-control", @id = "ddlQuestionSubect" })
+                @Html.ValidationMessageFor(model => model.SubjectID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DifficultyID, "Puanlama", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("DifficultyID", null, htmlAttributes: new { @class = "form-control", @id = "ddlQuestionDifficulty" })
+                @Html.ValidationMessageFor(model => model.DifficultyID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.LanguageID, "Dil", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("LanguageID", null, htmlAttributes: new { @class = "form-control", @id = "ddlQuestionLanguage" })
+                @Html.ValidationMessageFor(model => model.LanguageID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.QuestionDefinition, "Soru", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.QuestionDefinition, new { htmlAttributes = new { @class = "form-control", @id = "txtQuestionDefinition" } })
+                @Html.ValidationMessageFor(model => model.QuestionDefinition, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+       
+
+        
+
+        <div class="form-group">
+            @Html.Label("Seçenek Sayısı", htmlAttributes: new { @class = "control-label col-md-2" })
+           
+            <div class="col-md-10">
+                @Html.Editor("txtOptionCount" ,new { htmlAttributes = new { @class = "form-control", @data_val = "true", @data_val_required = "En az bir seçenek olmalı", @onkeyup = "addOption(this)", @onmouseup = "addOption(this)", @type = "number", @data_rule_range = "[1,50]", @data_msg_range = "Girilen rakam ${0} ile ${1} arasında olmalı" } })
+                @Html.ValidationMessage("txtOptionCount","", new { @class = "text-danger", @id="spnOptionCount" })
+            </div>
+            
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.ValidationMessage("", new { @class = "text-danger", @id = "lblCorrect" })
+                <table class="table" id="tblAddOption" style="display:none">
+
+                    <thead>
+                        <tr>
+                            <th>
+                                Seçenek
+                            </th>
+                            <th>
+                                Cevap
+                            </th>
+                           
+                            <th>
+                                Dogru
+                            </th>
+                           
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+                </div>
+            </div>
+        
+        
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Kaydet" class="btn btn-default" id="btnQuestionSubmit" />
+            </div>
+        </div>
+    </div>
+
+</form>

@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="QuestionProjeModelStoreContainer" CdmEntityContainer="QuestionProjeEntities">
+    <EntitySetMapping Name="Difficulty">
+      <EntityTypeMapping TypeName="QuestionProjeModel.Difficulty">
+        <MappingFragment StoreEntitySet="Difficulty">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Degree" ColumnName="Degree" />
+          <ScalarProperty Name="StudentPoint" ColumnName="StudentPoint" />
+          <ScalarProperty Name="TeacherPoint" ColumnName="TeacherPoint" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EducationProgram">
+      <EntityTypeMapping TypeName="QuestionProjeModel.EducationProgram">
+        <MappingFragment StoreEntitySet="EducationProgram">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="LanguageID" ColumnName="LanguageID" />
+          <ScalarProperty Name="State" ColumnName="State" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Language">
+      <EntityTypeMapping TypeName="QuestionProjeModel.Language">
+        <MappingFragment StoreEntitySet="Language">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="state" ColumnName="state" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Lesson">
+      <EntityTypeMapping TypeName="QuestionProjeModel.Lesson">
+        <MappingFragment StoreEntitySet="Lesson">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="EducationProgramID" ColumnName="EducationProgramID" />
+          <ScalarProperty Name="LanguageID" ColumnName="LanguageID" />
+          <ScalarProperty Name="State" ColumnName="State" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Question">
+      <EntityTypeMapping TypeName="QuestionProjeModel.Question">
+        <MappingFragment StoreEntitySet="Question">
+          <ScalarProperty Name="QID" ColumnName="QID" />
+          <ScalarProperty Name="QType" ColumnName="QType" />
+          <ScalarProperty Name="SubjectID" ColumnName="SubjectID" />
+          <ScalarProperty Name="QDifficulty" ColumnName="QDifficulty" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="QuestionContent">
+      <EntityTypeMapping TypeName="QuestionProjeModel.QuestionContent">
+        <MappingFragment StoreEntitySet="QuestionContent">
+          <ScalarProperty Name="QContentID" ColumnName="QContentID" />
+          <ScalarProperty Name="QContent" ColumnName="QContent" />
+          <ScalarProperty Name="SuperiorContent" ColumnName="SuperiorContent" />
+          <ScalarProperty Name="ContentType" ColumnName="ContentType" />
+          <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="QuestionSystemClassRelation">
+      <EntityTypeMapping TypeName="QuestionProjeModel.QuestionSystemClassRelation">
+        <MappingFragment StoreEntitySet="QuestionSystemClassRelation">
+          <ScalarProperty Name="QuestionSystemRelationID" ColumnName="QuestionSystemRelationID" />
+          <ScalarProperty Name="QID" ColumnName="QID" />
+          <ScalarProperty Name="SystemClassID" ColumnName="SystemClassID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Subject">
+      <EntityTypeMapping TypeName="QuestionProjeModel.Subject">
+        <MappingFragment StoreEntitySet="Subject">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="LessonID" ColumnName="LessonID" />
+          <ScalarProperty Name="LanguageID" ColumnName="LanguageID" />
+          <ScalarProperty Name="State" ColumnName="State" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,73 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+
+<div id="dvEducationProgram">
+    @{
+        Html.RenderPartial("~/Views/Shared/QuestionPreliminary/EducationProgram/_List.cshtml");
+    }
+</div>
+
+<div id="dvEducationProgramAdd" style="display:none">
+    @{
+        Html.RenderPartial("~/Views/Shared/QuestionPreliminary/EducationProgram/_Add.cshtml");
+    }
+</div>
+
+
+<div id="dvLesson">
+    @{
+        Html.RenderPartial("~/Views/Shared/QuestionPreliminary/Lesson/_List.cshtml");
+    }
+</div>
+<div id="dvLessonAdd" style="display:none">
+    @{
+        Html.RenderPartial("~/Views/Shared/QuestionPreliminary/Lesson/_Add.cshtml");
+    }
+</div>
+
+<div id="dvSubject">
+    @{
+        Html.RenderPartial("~/Views/Shared/QuestionPreliminary/Subject/_List.cshtml");
+    }
+</div>
+<div id="dvSubjectAdd" style="display:none">
+    @{
+        Html.RenderPartial("~/Views/Shared/QuestionPreliminary/Subject/_Add.cshtml");
+    }
+</div>
+
+<div id="dvDifficulty">
+    @{
+        Html.RenderPartial("~/Views/Shared/QuestionPreliminary/Difficulty/_List.cshtml");
+    }
+</div>
+
+<div id="dvDifficultyAdd" style="display:none">
+    @{
+        Html.RenderPartial("~/Views/Shared/QuestionPreliminary/Difficulty/_Add.cshtml");
+    }
+</div>
+
+
+<div id="dvQuestion">
+    @{
+        Html.RenderPartial("~/Views/Shared/QuestionPreliminary/Question/_List.cshtml");
+    }
+</div>
+
+<div id="dvQuestionAdd" style="display:none">
+    @{
+        Html.RenderPartial("~/Views/Shared/QuestionPreliminary/Question/_Add.cshtml");
+    }
+</div>
+
+<div id="dvQuestionOption" style="display:none">
+    @{
+        Html.RenderPartial("~/Views/Shared/QuestionPreliminary/Question/_OptionList.cshtml");
+    }
+</div>
